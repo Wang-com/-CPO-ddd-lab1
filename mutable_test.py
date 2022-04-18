@@ -1,7 +1,7 @@
 import unittest
 from hypothesis import given
 import hypothesis.strategies as st
-from HashMap import *
+from mutable import *
 
 
 class TestHashmapMethods(unittest.TestCase):
