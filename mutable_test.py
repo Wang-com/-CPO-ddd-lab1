@@ -15,7 +15,6 @@ class TestHashmapMethods(unittest.TestCase):
         hash_value = hashmap.hash(47)
         self.assertEqual(hash_value, 5)
 
-    # 1. add
     def test_add(self):
         hashmap = HashMap()
         self.assertEqual(hashmap.hashmap_to_list(), [])
@@ -23,26 +22,20 @@ class TestHashmapMethods(unittest.TestCase):
         self.assertEqual(hashmap.get(36), 240)
 
 
-    # 2. remove
     def test_remove(self):
         hashmap = HashMap()
         dict1 = {1: 1, 3: 3, 5: 5}
         hashmap.hashmap_from_dict(dict1)
-        # hashmap.add(1, 2)
-        # self.assertEqual(hashmap.get(1), 2)
 
         hashmap.remove(1)
         dict2 = {3: 3, 5: 5}
         self.assertEqual(hashmap.hashmap_to_dict(), dict2)
-        # with pytest.raises(Exception):
-        #     hashmap.remove(6)
 
     def test_get(self):
         hashmap = HashMap()
         hashmap.add(1, 2)
         self.assertEqual(hashmap.get(1), 2)
 
-    # 3. get_size
     def test_get_size(self):
         hashmap = HashMap()
         self.assertEqual(hashmap.get_size(), 0)
@@ -52,7 +45,6 @@ class TestHashmapMethods(unittest.TestCase):
         hashmap.add(2, 10)
         self.assertEqual(hashmap.get_size(), 3)
 
-    # 4. conversion
     def test_hashmap_from_dict(self):
         hashmap = HashMap()
         dict = {1: 1, 2: 2, 3: 3}
@@ -62,14 +54,12 @@ class TestHashmapMethods(unittest.TestCase):
         hashmap.hashmap_from_dict(dict1)
         self.assertEqual(hashmap.get_size(), 6)
 
-    # 4. conversion
     def test_hashmap_from_list(self):
         hashmap = HashMap()
         test_data = [1, 2, 3, 4, 5]
         hashmap.hashmap_from_list(test_data)
         self.assertEqual(hashmap.get_size(), 5)
 
-    # 4. conversion
     def test_hashmap_to_dict(self):
         hashmap = HashMap()
         hashmap.add(1, 2)
@@ -77,33 +67,28 @@ class TestHashmapMethods(unittest.TestCase):
         hashmap.add(4, 5)
         self.assertEqual(hashmap.hashmap_to_dict(), {1: 2, 2: 3, 4: 5})
 
-    # 4. conversion
     def test_hashmap_to_list(self):
         hashmap = HashMap()
         dict = {1: 2, 2: 3, 3: 4, 7: 9}
         hashmap.hashmap_from_dict(dict)
         self.assertEqual(hashmap.hashmap_to_list(), [9, 2, 3, 4])
 
-    # 5. find: return the even value list
     def test_find_even(self):
         hashmap = HashMap()
         hashmap.hashmap_from_list([75.51, 2, 60.0, 7.0])
         self.assertEqual(hashmap.find_even(), [2, 60.0])
 
-    # 6. filter: return the values' list except even value
     def test_filter_even(self):
         hashmap = HashMap()
         hashmap.hashmap_from_list([75.51, 2, 4.0, 7.0])
         self.assertEqual(hashmap.filter_even(), [75.51, 7.0])
 
-    # 7.map(func): test square
     def test_map(self):
         dict1 = {1: 5, 4: 10}
         hashmap = HashMap()
         hashmap.hashmap_from_dict(dict1)
         self.assertEqual(hashmap.map(lambda x: x * x), [25, 100])
 
-    # 8.reduce:test multiplicative
     def test_reduce(self):
         hashmap = HashMap()
         self.assertEqual(hashmap.reduce(lambda a, b: a * b, 1), 1)
@@ -111,7 +96,6 @@ class TestHashmapMethods(unittest.TestCase):
         hashmap.hashmap_from_dict(dict1)
         self.assertEqual(hashmap.reduce(lambda a, b: a * b, 1), 180)
 
-    # 9.iteration
     def test_iter(self):
         x = {1, 2, 3, 4}
         hashmap = HashMap()
@@ -123,7 +107,6 @@ class TestHashmapMethods(unittest.TestCase):
         i = iter(hashmap)
         self.assertEqual(next(i).value, 1)
 
-    # Add property-based tests for from_list and to_list, all monoid properties (Associativity, Identity element)
     @given(x=st.lists(st.integers()), y=st.lists(st.integers()), z=st.lists(st.integers()))
     def test_monoid_associativity(self, x, y, z):
         hashmap = HashMap()
