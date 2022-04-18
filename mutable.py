@@ -18,10 +18,10 @@ class HashMap(object):
         self.index = 0
 
     def hash(self, key):
-        hash_value = key % self.length  # mod
+        hash_value = key % self.length
         return hash_value
 
-    # 1. add
+   
     def add(self, key, value):
         hash_value = self.hash(key)
         addNode = Node(key, value)
@@ -31,23 +31,18 @@ class HashMap(object):
             self.keyList.append(key)
         else:
             head = self.data[hash_value]
-            # loop to find the empty Node
             while head.next != None:
-                # key == ?
                 if head.key == key:
                     head.value = value
                     return
                 head = head.next
-            # Judge whether it already exists
             if head.key == key:
                 head.value = value
                 return
-            # Now find the empty Node
             head.next = addNode
             self.keyList.append(key)
         return
 
-    # 2. remove
     def remove(self, key):
         hash_value = self.hash(key)
         if self.data[hash_value] is self.init:
@@ -69,23 +64,16 @@ class HashMap(object):
             p.next = None
             self.keyList.remove(key)
             return True
-        # # all the elements have been checked
-        # raise Exception("WE DONT HAVE THIS key")
-        # return
 
-
-    # get value
     def get(self, key):
         dict = self.hashmap_to_dict()
         value = dict[key]
         return value
 
-    # 3. size
     def get_size(self):
         size = len(self.keyList)
         return size
 
-    # 4. conversion
     def hashmap_from_dict(self, dict):
         for key, value in dict.items():
             self.add(key, value)
@@ -97,10 +85,8 @@ class HashMap(object):
 
     def hashmap_to_dict(self):
         Dict = {}
-        # whether the hashmap is empty
         if len(self.keyList) == 0:
             return Dict
-        # convert one by one set
         for i in range(self.length):
             if self.data[i] != self.init:
                 head = self.data[i]
@@ -109,7 +95,6 @@ class HashMap(object):
                     head = head.next
         return Dict
 
-    # hashmap_to_list may lose the key info
     def hashmap_to_list(self):
 
         dict = self.hashmap_to_dict()
@@ -118,7 +103,6 @@ class HashMap(object):
             list.append(value)
         return list
 
-    # 5.find: return the even value list
     def find_even(self):
         dict = self.hashmap_to_dict()
         findlist = []
@@ -126,8 +110,7 @@ class HashMap(object):
             if value % 2 == 0:
                 findlist.append(value)
         return findlist
-
-    # 6. filter: return the values' list except even value
+    
     def filter_even(self):
         list = self.hashmap_to_list()
         filterlist = []
@@ -136,7 +119,6 @@ class HashMap(object):
                 filterlist.append(value)
         return filterlist
 
-    # 7.map(func)
     def map(self, func):
 
         list = self.hashmap_to_list()
@@ -145,8 +127,7 @@ class HashMap(object):
             value = func(value)
             listOut.append(value)
         return listOut
-
-    # 8.reduce
+    
     def reduce(self, func, init_state):
         a = init_state
         for key in self.keyList:
@@ -154,7 +135,6 @@ class HashMap(object):
             a = func(a, value)
         return a
 
-    # mempty and mconcat
     def mempty(self):
         return None
 
@@ -169,7 +149,6 @@ class HashMap(object):
             a.add(key, value)
         return a
 
-    # 9.iteration
     def __iter__(self):
         iter_list = []
         for key in self.keyList:
