@@ -26,7 +26,6 @@ class TestHashmapMethods(unittest.TestCase):
         hashmap = HashMap()
         dict1 = {1: 1, 3: 3, 5: 5}
         hashmap.hashmap_from_dict(dict1)
-
         hashmap.remove(1)
         dict2 = {3: 3, 5: 5}
         self.assertEqual(hashmap.hashmap_to_dict(), dict2)
@@ -113,16 +112,13 @@ class TestHashmapMethods(unittest.TestCase):
         hash_x = HashMap()
         hash_y = HashMap()
         hash_z = HashMap()
-
         hash_x.hashmap_from_list(x)
         hash_y.hashmap_from_list(y)
         hash_z.hashmap_from_list(z)
-
         xy = hashmap.mconcat(hash_x, hash_y)
         xy_z = hashmap.mconcat(xy, hash_z)
         yz = hashmap.mconcat(hash_y, hash_z)
         yz_x = hashmap.mconcat(hash_x, yz)
-
         self.assertEqual(xy_z, yz_x)
 
     @given(st.lists(st.integers()))
