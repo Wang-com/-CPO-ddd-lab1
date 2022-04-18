@@ -21,7 +21,6 @@ class TestHashmapMethods(unittest.TestCase):
         hashmap.add(36, 240)
         self.assertEqual(hashmap.get(36), 240)
 
-
     def test_remove(self):
         hashmap = HashMap()
         dict1 = {1: 1, 3: 3, 5: 5}
@@ -106,8 +105,8 @@ class TestHashmapMethods(unittest.TestCase):
         i = iter(hashmap)
         self.assertEqual(next(i).value, 1)
 
-    @given(x=st.lists(st.integers()), 
-           y=st.lists(st.integers()), 
+    @given(x=st.lists(st.integers()),
+           y=st.lists(st.integers()),
            z=st.lists(st.integers()))
     def test_monoid_associativity(self, x, y, z):
         hashmap = HashMap()
@@ -137,6 +136,7 @@ class TestHashmapMethods(unittest.TestCase):
         hashmap.hashmap_from_list(a)
         b = hashmap.hashmap_to_list()
         self.assertEqual(len(b), len(a))
+
 
 if __name__ == '__main__':
     unittest.main()
