@@ -1,3 +1,4 @@
+from turtle import back
 import unittest
 from hypothesis import given
 import hypothesis.strategies as st
@@ -139,4 +140,4 @@ class TestHashmapMethods(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)
