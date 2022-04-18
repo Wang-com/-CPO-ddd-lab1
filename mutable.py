@@ -106,7 +106,7 @@ class HashMap(object):
             if value % 2 == 0:
                 findlist.append(value)
         return findlist
-    
+ 
     def filter_even(self):
         list = self.hashmap_to_list()
         filterlist = []
@@ -122,7 +122,7 @@ class HashMap(object):
             value = func(value)
             listOut.append(value)
         return listOut
-    
+ 
     def reduce(self, func, init_state):
         a = init_state
         for key in self.keyList:
