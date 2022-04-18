@@ -11,7 +11,6 @@ class HashMap(object):
     def __init__(self, dict=None, length=7):
         if dict is not None:
             self.hashmap_from_dict(self, dict)
-
         self.keyList = []
         self.data = [self.init for i in range(length)]
         self.length = length
@@ -21,11 +20,9 @@ class HashMap(object):
         hash_value = key % self.length
         return hash_value
 
-   
     def add(self, key, value):
         hash_value = self.hash(key)
         addNode = Node(key, value)
-
         if self.data[hash_value] == self.init:
             self.data[hash_value] = addNode
             self.keyList.append(key)
@@ -78,7 +75,6 @@ class HashMap(object):
         for key, value in dict.items():
             self.add(key, value)
 
-
     def hashmap_from_list(self, list):
         for key, value in enumerate(list):
             self.add(key, value)
@@ -120,7 +116,6 @@ class HashMap(object):
         return filterlist
 
     def map(self, func):
-
         list = self.hashmap_to_list()
         listOut = []
         for value in list:
