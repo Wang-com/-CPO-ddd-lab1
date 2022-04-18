@@ -28,7 +28,7 @@ class HashMap(object):
             self.keyList.append(key)
         else:
             head = self.data[hash_value]
-            while head.next != None:
+            while head.next is not None:
                 if head.key == key:
                     head.value = value
                     return
@@ -86,7 +86,7 @@ class HashMap(object):
         for i in range(self.length):
             if self.data[i] != self.init:
                 head = self.data[i]
-                while head != None:
+                while head is not None:
                     Dict[head.key] = head.value
                     head = head.next
         return Dict
