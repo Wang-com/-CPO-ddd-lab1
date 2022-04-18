@@ -106,7 +106,9 @@ class TestHashmapMethods(unittest.TestCase):
         i = iter(hashmap)
         self.assertEqual(next(i).value, 1)
 
-    @given(x=st.lists(st.integers()), y=st.lists(st.integers()), z=st.lists(st.integers()))
+    @given(x=st.lists(st.integers()), 
+           y=st.lists(st.integers()), 
+           z=st.lists(st.integers()))
     def test_monoid_associativity(self, x, y, z):
         hashmap = HashMap()
         hash_x = HashMap()
@@ -126,7 +128,6 @@ class TestHashmapMethods(unittest.TestCase):
         hash1 = HashMap()
         hash2 = HashMap()
         hash1.hashmap_from_list(a)
-        # a+b = b+a
         self.assertEqual(hash1.mconcat(hash2.mempty(), hash1), hash1)
         self.assertEqual(hash1.mconcat(hash1, hash2.mempty()), hash1)
 
@@ -136,7 +137,6 @@ class TestHashmapMethods(unittest.TestCase):
         hashmap.hashmap_from_list(a)
         b = hashmap.hashmap_to_list()
         self.assertEqual(len(b), len(a))
-
 
 if __name__ == '__main__':
     unittest.main()
