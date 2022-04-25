@@ -29,6 +29,8 @@ Wang Zehao Completed the test_mutable.py
 
 ## Changelog
 
+- 25.04.2022 - 2
+  - Fix problems in email
 - 16.04.2022 - 1
   - Add Wang Zehao upload test_mutable.py
 - 15.04.2022 - 1
@@ -37,9 +39,6 @@ Wang Zehao Completed the test_mutable.py
   - Initial
 
 ## Design notes
-
-- Implementation restrictions:
-  - The length of the hash table is fixed
 
 - Advantages of unittest:
   - Support automated testing
