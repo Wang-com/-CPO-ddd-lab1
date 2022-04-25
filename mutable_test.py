@@ -8,12 +8,12 @@ class TestHashmapMethods(unittest.TestCase):
 
     def test_init(self):
         hashmap = HashMap()
-        self.assertEqual(hashmap.length, 7)
+        self.assertEqual(hashmap.length, 13)
 
     def test_hash(self):
         hashmap = HashMap()
         hash_value = hashmap.hash(47)
-        self.assertEqual(hash_value, 5)
+        self.assertEqual(hash_value, 8)
 
     def test_add(self):
         hashmap = HashMap()
@@ -69,7 +69,7 @@ class TestHashmapMethods(unittest.TestCase):
         hashmap = HashMap()
         dict = {1: 2, 2: 3, 3: 4, 7: 9}
         hashmap.hashmap_from_dict(dict)
-        self.assertEqual(hashmap.hashmap_to_list(), [9, 2, 3, 4])
+        self.assertEqual(hashmap.hashmap_to_list(), [2, 3, 4, 9])
 
     def test_find_even(self):
         hashmap = HashMap()
@@ -95,9 +95,10 @@ class TestHashmapMethods(unittest.TestCase):
         self.assertEqual(hashmap.reduce(lambda a, b: a * b, 1), 180)
 
     def test_iter(self):
-        x = {1, 2, 3, 4}
         hashmap = HashMap()
-        hashmap.hashmap_from_list(x)
+        hashmap.add(1, 1)
+        hashmap.add(2, 2)
+        hashmap.add(3, 3)
         temp = {}
         for e in hashmap:
             temp[e.key] = e.value
@@ -109,26 +110,27 @@ class TestHashmapMethods(unittest.TestCase):
            y=st.lists(st.integers()),
            z=st.lists(st.integers()))
     def test_monoid_associativity(self, x, y, z):
-        hashmap = HashMap()
         hash_x = HashMap()
         hash_y = HashMap()
         hash_z = HashMap()
         hash_x.hashmap_from_list(x)
         hash_y.hashmap_from_list(y)
         hash_z.hashmap_from_list(z)
-        xy = hashmap.mconcat(hash_x, hash_y)
-        xy_z = hashmap.mconcat(xy, hash_z)
-        yz = hashmap.mconcat(hash_y, hash_z)
-        yz_x = hashmap.mconcat(hash_x, yz)
-        self.assertEqual(xy_z, yz_x)
+        hash_X = hash_x
+        hash_Y = hash_y
+        hash_Z = hash_z
+        hash_x.concat(hash_y)
+        hash_x.concat(hash_z)
+        hash_X.concat(hash_Z)
+        hash_X.concat(hash_Y)
+        self.assertEqual(hash_x, hash_X)
 
     @given(st.lists(st.integers()))
     def test_monoid_identity(self, a):
         hash1 = HashMap()
         hash2 = HashMap()
         hash1.hashmap_from_list(a)
-        self.assertEqual(hash1.mconcat(hash2.mempty(), hash1), hash1)
-        self.assertEqual(hash1.mconcat(hash1, hash2.mempty()), hash1)
+        self.assertEqual(hash1.concat(hash2.empty()), hash1)
 
     @given(a=st.lists(st.integers()))
     def test_hashmap_from_list_to_list_equality(self, a):
