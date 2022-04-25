@@ -8,7 +8,7 @@ class Node(object):
 class HashMap(object):
     init = object()
 
-    def __init__(self, dict=None, length=7):
+    def __init__(self, dict=None, length=13):
         if dict is not None:
             self.hashmap_from_dict(self, dict)
         self.keyList = []
@@ -130,19 +130,18 @@ class HashMap(object):
             a = func(a, value)
         return a
 
-    def mempty(self):
+    def empty(self):
         return None
 
-    def mconcat(self, a, b):
-        # judge input
-        if a is None:
-            return b
-        if b is None:
-            return a
-        for key in b.keyList:
-            value = b.get(key)
-            a.add(key, value)
-        return a
+    def concat(self, set):
+        if self is None:
+            return set
+        elif set is HashMap:
+            for key in set.keyList:
+                value = set.get(key)
+                self.add(key, value)
+                return self
+        return self
 
     def __iter__(self):
         iter_list = []
