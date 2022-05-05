@@ -29,6 +29,9 @@ Wang Zehao Completed the test_mutable.py
 
 ## Changelog
 
+- 05.05.2022 - 3
+  - Modified empty function
+  - Add docstrings for all functions.
 - 25.04.2022 - 2
   - Fix problems in email
 - 16.04.2022 - 1
